@@ -6,14 +6,16 @@ class Console {
     init {
         getDataTypesInfo()
     }
- // Start challenge "100 coding exercises" from https://smartprogress.do/programming. Added class for console-tasks + solved 1st ex.
-    // 1
-    // Постановка задачи: красиво вывести информацию о типах данных (целочисленные, строки)
-    // и их переменных (int, string) и других существующих в вашем языке типов данных.
-    // Оформить всё аккуратно и красиво.
+
+
+    /**
+     * 1) Постановка задачи: красиво вывести информацию о типах данных (целочисленные, строки)
+     * и их переменных (int, string) и других существующих в вашем языке типов данных.
+     * Оформить всё аккуратно и красиво.
+     * info abt types from https://metanit.com/kotlin/tutorial/2.2.php
+     * info abt formatted output from https://metapx.org/kotlin-string-format/
+     */
     fun getDataTypesInfo(){
-        // info from https://metanit.com/kotlin/tutorial/2.2.php
-        // info abt formatted output https://metapx.org/kotlin-string-format/
         val formatHeader = "%-8s | %11s | %28s | %28s |"
         val tableHeader = String.format(formatHeader, "type", "size (bits)", "min value", "max value")
         println(tableHeader)
@@ -48,5 +50,16 @@ class Console {
 
         val formatOtherTypes = "%-8s | %11s | %28s | %28s |"
         otherTypes.forEach { e -> println(e.toString(formatOtherTypes)) }
+    }
+
+    /**
+     * 2. Консольный перехват ошибки
+     * Постановка задачи: написать программу, в которой может случиться 5 случаев,
+     * в случае которых может возникнуть ошибка.
+     * Научиться эту ошибку перехватывать и не давать программе выключаться
+     * (оповещать об ошибке, но не давать выключаться программе, продолжая её работу).
+     */
+    fun startCatchingConsoleErrors(){
+
     }
 }
