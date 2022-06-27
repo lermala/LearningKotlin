@@ -1,3 +1,5 @@
+package other
+
 class BeautifulOutput {
     private var taskNumber = 0
 

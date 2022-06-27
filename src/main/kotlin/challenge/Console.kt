@@ -6,7 +6,7 @@ class Console {
     init {
         getDataTypesInfo()
     }
-
+ // Start challenge "100 coding exercises" from https://smartprogress.do/programming. Added class for console-tasks + solved 1st ex.
     // 1
     // Постановка задачи: красиво вывести информацию о типах данных (целочисленные, строки)
     // и их переменных (int, string) и других существующих в вашем языке типов данных.

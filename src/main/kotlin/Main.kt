@@ -1,3 +1,5 @@
+import other.YandexTasks
+
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
@@ -5,6 +7,7 @@ fun main(args: Array<String>) {
 }
 
 fun startTasks(){
-    var tasks1 = YandexTasks() 
+    // var tasks1 = YandexTasks()
+    var console: challenge.Console = challenge.Console()
 
 }

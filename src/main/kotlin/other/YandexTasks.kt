@@ -1,3 +1,5 @@
+package other
+
 import java.lang.Integer.min
 
 class YandexTasks {
@@ -12,9 +14,10 @@ class YandexTasks {
         val result2 = getLettersAndAmountsInARow("AAAABBBCCXYZAAAAABBBBBBBBBBB")
         val result3 = groupByCommonLetters(listOf("eat", "tea", "ate", "tan", "nat", "bat"))
 
-        println(getConditionalAndResult(task1, result1))
-        println(getConditionalAndResult(task2, result2))
-        println(getConditionalAndResult(task3, result3))
+        val beauty = BeautifulOutput()
+        println(beauty.getConditionalAndResult(task1, result1))
+        println(beauty.getConditionalAndResult(task2, result2))
+        println(beauty.getConditionalAndResult(task3, result3))
     }
 
     // 1. вывод повторяющихся чисел N раз. N = минимальное количество пересечений чисел
@@ -78,10 +81,4 @@ class YandexTasks {
     fun groupByCommonLetters(sArray: List<String>): Collection<List<String>> {
         return sArray.groupBy { it.toCharArray().sorted() }.values
     }
-
-    // вывести условие задачи и результат
-    fun getConditionalAndResult(condition: String, task: Any): String{
-        return "Задание: $condition\n Решение: $task\n\n"
-    }
-
 }
