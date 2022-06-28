@@ -67,7 +67,7 @@ class Console {
             val x = 10 / list[1]
             println("x = $x")
         } catch (e: Exception) {
-            println(e.message)
+            println("1) Error ${e.message}")
         }
 
         // 2. fail to convert string to number
@@ -75,14 +75,45 @@ class Console {
         try {
             number = "68 lera".toInt()
         } catch (e: Exception) {
-            println(e.message)
+            println("2) Error ${e.message}")
             number = 0
         } finally {
             println("number = $number")
         }
 
         // 3. null
+        try {
+            val list: MutableList<String?> = mutableListOf()
+            list.add(null)
+            val x = list[0]!! // !! - allow get NPE exception
+            println(x)
+        } catch (e: NullPointerException){
+            println("3) Error ${e.message}")
+        }
 
+        // 4. ArrayIndexOutOfBoundsException
+        try {
+            val array = arrayOf(1, 2, 3, 4)
+            println(array[10])
+        } catch (e: ArrayIndexOutOfBoundsException){
+            println("4) Error ${e.message}")
+        }
+
+        // 5. own exception
+        fun checkAge(age: Int){
+            if (age < 0){
+                throw Exception("Invalid value $age. Age must be greater than 0")
+            } else if (age > 115){
+                throw Exception("Invalid value $age. Age must be less than 115")
+            }
+        }
+
+        try {
+            val age = listOf(0, -1, 150).get(2)
+            checkAge(age)
+        } catch (e: Exception) {
+            println("5) Error ${e.message}")
+        }
 
         println("END of the startCatchingConsoleErrors()")
     }
