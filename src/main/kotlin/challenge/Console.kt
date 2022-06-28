@@ -1,12 +1,17 @@
 package challenge
 
+import java.util.*
+import kotlin.Comparator
+import kotlin.random.Random
+
 class Console {
     // https://smartprogress.do/programming
 
     init {
         // getDataTypesInfo()
         //startCatchingConsoleErrors()
-        getCalculator()
+        // getCalculator()
+        startArrayTasks()
     }
 
 
@@ -130,7 +135,7 @@ class Console {
     fun getCalculator(){
         class Calculator{
             fun sum(vararg numbers: Double): Double {
-                return numbers.reduce{sum, e -> sum + e}
+                return numbers.sum()
             }
 
             fun sub(vararg numbers: Double): Double {
@@ -165,5 +170,60 @@ class Console {
             println("Error ${npe.message} ${npe.stackTrace}")
         }
 
+    }
+
+    /**
+     * 4-8. Консольный массив
+     * Постановка задачи: Разработать программу которая умеет выводить массив M x N.
+     * Усложнение задачи: Сделать так, чтобы можно было производить какие-либо операции над массивами.
+     * (К примеру чисел в массиве, нахождение общего знаменателя и так далее - подобные задачи можно найти в интернете).
+     * Для того чтобы зачесть себе в карму усложнение задачи, решите как минимум 5 задач с матрицами.
+     */
+    fun startArrayTasks(){
+        // val N = inputToConsole("N = ")
+        // val M = inputToConsole("M = ")
+        val N = 5 // строки
+        val M = 4 // столбцы
+
+        val table: Array<Array<Int>> = Array(N, { Array(M, {it -> Random.nextInt(0, 100) }) }) // randoms
+        // val table: Array<Array<Int>> = Array(N, { Array(M, {it -> 10 * (it - 1)}) }) // it + 1 (from 1 to ...)
+        // val table: Array<Array<Int>> = Array(N, { Array(M, {0}) }) // all is zero
+
+        // println(table.contentToString()) // для одномерного массива
+        for(row in table){
+            for(cell in row){
+                print("$cell \t")
+            }
+            println()
+        }
+
+        // 4. find min
+        println("min = ${findMinInArray(table)}")
+
+    }
+
+    // 4. минимальное значение массива
+    fun findMinInArray(array: Array<Array<Int>>): Int {
+        var min = array[0][0]
+        for (row in array){
+            for(cell in row){
+                if (cell <= min){
+                    min = cell
+                }
+            }
+        }
+        return min
+    }
+
+    fun inputToConsole(msg: String): Int?{
+        var res: Int? = null
+        try {
+            print(msg)
+            res = readLine()?.toInt()
+        } catch (e: Exception){
+            println("Invalid value. Enter the integer number")
+            inputToConsole(msg)
+        }
+        return res
     }
 }
