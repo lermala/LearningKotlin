@@ -5,7 +5,8 @@ class Console {
 
     init {
         // getDataTypesInfo()
-        startCatchingConsoleErrors()
+        //startCatchingConsoleErrors()
+        getCalculator()
     }
 
 
@@ -68,6 +69,7 @@ class Console {
             println("x = $x")
         } catch (e: Exception) {
             println("1) Error ${e.message}")
+            println("1) Error ${e.cause}")
         }
 
         // 2. fail to convert string to number
@@ -116,5 +118,52 @@ class Console {
         }
 
         println("END of the startCatchingConsoleErrors()")
+    }
+
+    /**
+     * 3. Консольный калькулятор
+     * Постановка задачи: написать программу, которая умеет выполнять следующие действия:
+     * сложение, вычитание, умножение, деление и возведение в степень.
+     * Количество чисел выбирайте произвольное
+     * (простая задача - два числа, сложная задача - количество чисел вводит пользователь).
+     */
+    fun getCalculator(){
+        class Calculator{
+            fun sum(vararg numbers: Double): Double {
+                return numbers.reduce{sum, e -> sum + e}
+            }
+
+            fun sub(vararg numbers: Double): Double {
+                return numbers.reduce{sub, e -> sub - e}
+            }
+
+            fun multiply(vararg numbers: Double): Double {
+                return numbers.reduce{mult, e -> mult * e}
+            }
+            fun divide(vararg numbers: Double): Double {
+                if (numbers.any { it == 0.0 }) throw NullPointerException("/ by zero")
+                return numbers.reduce{div, e -> div / e}
+            }
+
+            fun pow(exp: Double, vararg numbers: Double): List<Double> {
+                return numbers.map{e -> Math.pow(e, exp)}
+            }
+        }
+
+        val calc = Calculator()
+        val nums = doubleArrayOf(10.0, 13.0, 40.0)
+        val exp = 0.0
+        println("nums = ${nums.joinToString(prefix = "[", postfix = "]")}") // more info abt joinToStr https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/join-to-string.html
+        println("sum = ${calc.sum(*nums)}") // * - is spread operator. it needs for passing array to vararg. More info: https://www.baeldung.com/kotlin/varargs-spread-operator
+        println("sub = ${calc.sub(*nums)}")
+        println("multiply = ${calc.multiply(*nums)}")
+        println("pow to $exp = ${calc.pow(exp, *nums)}")
+
+        try {
+            println("div = ${calc.divide(*nums)}")
+        } catch (npe: NullPointerException){
+            println("Error ${npe.message} ${npe.stackTrace}")
+        }
+
     }
 }
