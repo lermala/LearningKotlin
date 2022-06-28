@@ -4,7 +4,8 @@ class Console {
     // https://smartprogress.do/programming
 
     init {
-        getDataTypesInfo()
+        // getDataTypesInfo()
+        startCatchingConsoleErrors()
     }
 
 
@@ -60,6 +61,29 @@ class Console {
      * (оповещать об ошибке, но не давать выключаться программе, продолжая её работу).
      */
     fun startCatchingConsoleErrors(){
+        // 1. division by zero
+        try {
+            val list = listOf(10, 0 ,5, 6)
+            val x = 10 / list[1]
+            println("x = $x")
+        } catch (e: Exception) {
+            println(e.message)
+        }
 
+        // 2. fail to convert string to number
+        var number = -1
+        try {
+            number = "68 lera".toInt()
+        } catch (e: Exception) {
+            println(e.message)
+            number = 0
+        } finally {
+            println("number = $number")
+        }
+
+        // 3. null
+
+
+        println("END of the startCatchingConsoleErrors()")
     }
 }
